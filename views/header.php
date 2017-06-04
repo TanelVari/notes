@@ -13,7 +13,6 @@
         <ul id="menu">
             <li><a href="?">Algusesse</a></li>
             <?php if(isset($_SESSION['username'])): ?>
-                <li><a href="?page=add">Lisa märkus</a></li>
                 <li><a href="?page=logout">Logi välja</a></li>
             <?php endif; ?>
         </ul>

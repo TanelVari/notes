@@ -40,6 +40,7 @@ function login(){
 
                 $row = mysqli_fetch_assoc($result);
                 $_SESSION['username'] = $row['name'];
+                $_SESSION['user_id'] = $row['id'];
 
                 header("Location: ?");
                 die();
@@ -76,6 +77,7 @@ function add_user(){
 
         if ($result && mysqli_insert_id($connection) > 0){
             $_SESSION['username'] = htmlspecialchars($_POST['username']);
+            $_SESSION['user_id'] = mysqli_insert_id();
             header("Location: ?");
             die();
         }
@@ -95,13 +97,26 @@ function add_user(){
 function show_notes(){
     global $connection;
 
+    echo "siin";
     if (!isset($_SESSION['username'])){
+        echo "siin";
         header("Location: ?page=login");
         die();
-    } else {
-        echo "siia tuleb asi";
-    }
+    } else if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['add_note'])) {
+        echo "kak";
+        $post = mysqli_real_escape_string($connection, htmlspecialchars($_POST['comment']));
 
+        $sql = "INSERT INTO tvari_eksam_notes (note) VALUES ('".$post."'))";
+        $result = mysqli_query($connection, $sql);
+
+        if ($result && mysqli_insert_id($connection) > 0){
+            header("Location: ?");
+            die();
+        }
     }
+    echo "kakk";
+
+    //header("Location: ?");
+}
 
 ?>
