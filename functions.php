@@ -110,13 +110,13 @@ function show_notes(){
         $result = mysqli_query($connection, $sql);
 
         if ($result && mysqli_insert_id($connection) > 0){
-            header("Location: ?");
+            include_once('views/show_notes.php');
             die();
         }
     }
     echo "kakk";
 
-    //header("Location: ?");
+    header("Location: ?");
 }
 
 ?>

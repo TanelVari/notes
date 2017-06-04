@@ -1,6 +1,4 @@
 
-
-
 <form action="?page=add_note" method="POST" enctype="multipart/form-data" name="add_book_form">
 
     <label for="comment">Comment:</label><br/>
