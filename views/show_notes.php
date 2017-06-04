@@ -12,11 +12,8 @@
     $sql = "SELECT * FROM tvari_eksam_notes WHERE user_id = ".mysqli_real_escape_string($connection, $_SESSION['user_id']);
     $result = mysqli_query($connection, $sql);
 
-    $result = mysqli_query($connection, $sql);
-
-    if ($result) {
-        $row = mysqli_fetch_assoc($result);
-        echo "<div style='clear: both'>".$row['note']."</div>";
+    while ($row = mysqli_fetch_assoc($result)){
+        echo "<div style='clear: both'>".$row['note']."<br /></div>";
     }
 ?>
 </div>
