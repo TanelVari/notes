@@ -102,8 +102,9 @@ function show_notes(){
         die();
     } else if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['add_note']) && !empty($_POST['comment'])) {
         $post = mysqli_real_escape_string($connection, htmlspecialchars($_POST['comment']));
+        $uid = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['user_id']));
 
-        $sql = "INSERT INTO tvari_eksam_notes (note) VALUES ('".$post."'))";
+        $sql = "INSERT INTO tvari_eksam_notes (note, user_id) VALUES ('".$post."',".$uid."))";
         $result = mysqli_query($connection, $sql);
 
         if ($result && mysqli_insert_id($connection) > 0){
@@ -112,7 +113,7 @@ function show_notes(){
         }
     }
     else {
-        header("Location: ?");
+        include_once('views/show_notes.php');
     }
 }
 
