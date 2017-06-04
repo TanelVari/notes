@@ -97,13 +97,10 @@ function add_user(){
 function show_notes(){
     global $connection;
 
-    echo "siin";
     if (!isset($_SESSION['username'])){
-        echo "siin";
         header("Location: ?page=login");
         die();
-    } else if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['add_note'])) {
-        echo "kak";
+    } else if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['add_note']) && !empty($_POST['comment'])) {
         $post = mysqli_real_escape_string($connection, htmlspecialchars($_POST['comment']));
 
         $sql = "INSERT INTO tvari_eksam_notes (note) VALUES ('".$post."'))";
@@ -114,9 +111,9 @@ function show_notes(){
             die();
         }
     }
-    echo "kakk";
-
-    header("Location: ?");
+    else {
+        header("Location: ?");
+    }
 }
 
 ?>
